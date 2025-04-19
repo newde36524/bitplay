@@ -10,7 +10,7 @@ on:
     - cron: '40 6 * * *'
   push:
     branches: [ "main" ]
-    tags: [ 'latest' ]
+    tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ "main" ]
 
@@ -78,6 +78,9 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          platforms: 
+             - linux/arm64
+             - linux/amd64
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
